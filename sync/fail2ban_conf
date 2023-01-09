@@ -4,16 +4,6 @@
 
 [Definition]
 
-# Notify on Startup
-actionstart = curl -X POST "<webhook>" \
-            -H "Content-Type: application/json" \
-            -d '{"username": "Fail2Ban", "content":":white_check_mark: The **[<name>]** jail has started"}'
-
-# Notify on Shutdown
-actionstop = curl -X POST "<webhook>" \
-            -H "Content-Type: application/json" \
-            -d '{"username": "Fail2Ban", "content":":no_entry: The **[<name>]** jail has been stopped"}'
-
 #
 actioncheck =
 

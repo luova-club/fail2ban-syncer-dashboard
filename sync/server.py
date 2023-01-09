@@ -50,7 +50,5 @@ def is_banned(ip):
         else:
             return json.dumps({"is_banned": False})     
 
-@app.route("/shutdown", methods=["POST"])
-def shutdown():
-    
+
 app.run()
