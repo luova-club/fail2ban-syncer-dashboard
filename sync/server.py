@@ -12,13 +12,12 @@ def before_request(request):
         abort(402)
 
 
-def add_ban(request):
+def add_ban(request, ban):
     try:
         with open("bans.json", "r") as f:
             data = json.load(f)
         request = request.json()
-        if not request["ip"] in data:
-            data[request["ip"]] = True
+        data[request["ip"]] = ban
         with open("bans.json", "w") as f:
             json.dump(data, f)
     except Exception as e:
@@ -31,13 +30,17 @@ def get_bans():
         data = json.load(f)
     return data
 
-@app.route("/sync", methods=["POST", "GET"])
-def sync():
-    if request.method == "POST":
-        return add_ban(request)
-
-    elif request.method == "GET":
-        return get_bans()
+@app.route("/ban", methods=["POST", "GET"])
+def ban():
+    add_ban(request)
+    return ""
+@app.route("/unban", methods=["POST"])
+def unban():
+    add_ban(request, False)
+    return ""
+@app.route("/get_bans")
+def get_bans():
+    return get_bans()
 
     else:
         abort(404)

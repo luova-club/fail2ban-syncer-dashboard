@@ -7,18 +7,17 @@
 #
 actioncheck =
 
+webhook = 
+
 # Notify on Banned 
-actionban = curl -X POST "<webhook>" \
+actionban = curl -X POST "<webhook>/ban" \
             -H "Content-Type: application/json" \
-            -d '{"username":"Fail2Ban", "content":":bell: Hey <discord_userid>! **[<name>]** :hammer:**BANNED**:hammer: IP: `<ip>` for <bantime> hours after **<failures>** failure(s). Here is some info about the IP: https://db-ip.com/<ip>"}' 
-            curl -X POST "<webhook>" \
-            -H "Content-Type: application/json" \
-            -d '{"username":"Fail2Ban", "content":"If you want to unban the IP run: `fail2ban-client unban <ip>`"}'
+            -d '{"ip":"<ip>"}'
 
 # Notify on Unbanned
-actionunban = curl -X POST "<webhook>" \
+actionunban = curl -X POST "<webhook>/unban" \
             -H "Content-Type: application/json" \
-            -d '{"username":"Fail2Ban", "content":":bell: **[<name>]** **UNBANNED** IP: [<ip>](https://db-ip.com/<ip>)"}'
+            -d '{"ip":"<ip>"}'
 [Init]
 
 # Name of the jail in your jail.local file. default = [your-jail-name]
