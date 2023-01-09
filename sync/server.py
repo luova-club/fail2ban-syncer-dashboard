@@ -32,18 +32,15 @@ def get_bans():
 
 @app.route("/ban", methods=["POST", "GET"])
 def ban():
-    add_ban(request)
+    add_ban(request, True)
     return ""
 @app.route("/unban", methods=["POST"])
 def unban():
     add_ban(request, False)
     return ""
 @app.route("/get_bans")
-def get_bans():
+def route_get_bans():
     return get_bans()
-
-    else:
-        abort(404)
 
 @app.route("/is_banned/<ip>")
 def is_banned(ip):

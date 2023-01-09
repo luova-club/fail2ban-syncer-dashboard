@@ -1,13 +1,8 @@
-# Author: Gilbn from https://technicalramblings.com
-# Adapted Source: https://gist.github.com/sander1/075736a42db2c66bc6ce0fab159ca683
-# Create the Discord Webhook in: Server settings -> Webhooks -> Create Webhooks
-
 [Definition]
 
 #
 actioncheck =
 
-webhook = 
 
 # Notify on Banned 
 actionban = curl -X POST "<webhook>/ban" \
@@ -21,4 +16,6 @@ actionunban = curl -X POST "<webhook>/unban" \
 [Init]
 
 # Name of the jail in your jail.local file. default = [your-jail-name]
-name = default
+name = sshd
+
+webhook = server2.luova.club
