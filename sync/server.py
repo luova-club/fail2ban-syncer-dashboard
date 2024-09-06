@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 whitelist = []
 
+
 @app.before_request()
 def before_request(request):
     if not request.ip in whitelist:
@@ -25,22 +26,29 @@ def add_ban(request, ban):
     finally:
         return json.dumps({"status": 400}), 400
 
+
 def get_bans():
     with open("bans.json", "r") as f:
         data = json.load(f)
     return data
 
+
 @app.route("/ban", methods=["POST", "GET"])
 def ban():
     add_ban(request, True)
     return ""
+
+
 @app.route("/unban", methods=["POST"])
 def unban():
     add_ban(request, False)
     return ""
+
+
 @app.route("/get_bans")
 def route_get_bans():
     return get_bans()
+
 
 @app.route("/is_banned/<ip>")
 def is_banned(ip):
@@ -48,7 +56,7 @@ def is_banned(ip):
         if ip in get_bans():
             return json.dumps({"is_banned": True})
         else:
-            return json.dumps({"is_banned": False})     
+            return json.dumps({"is_banned": False})
 
 
 app.run()
